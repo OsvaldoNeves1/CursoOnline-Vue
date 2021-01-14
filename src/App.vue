@@ -1,32 +1,90 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <TheHeader/>
+    <main id="main">
+      <router-view class="container"></router-view>
+    </main>
+    <TheFooter/>
   </div>
 </template>
 
+<script>
+import TheHeader from "@/components/TheHeader.vue";
+import TheFooter from "@/components/TheFooter.vue";
+
+
+
+export default {
+  components: {
+    TheHeader,
+    TheFooter
+  }
+  
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+
+body {
+  margin: 0px;
+  font-family: 'Raleway', sans-serif;
+  color: #234;
+  background: url("./assets/pattern.svg");
+}
+ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
+a {
   font-weight: bold;
-  color: #2c3e50;
+  text-decoration: none;
+  color: #234;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+a.router-link-exact-active {
+  color: #4b8;
 }
+
+.container {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.v-enter {
+  opacity: 0;
+  transform: translate3d(-20px, 0, 0);
+}
+
+.v-enter-active{
+  transition: all .3s;
+}
+
+.conteudo {
+  display: grid;
+  grid-template-columns: 1fr minmax(200px, 400px);
+  grid-gap: 30px;
+}
+
+#app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+#main {
+  flex: 1;
+}
+
+@media screen and (max-width: 500px) {
+  .conteudo {
+    display: block;
+  }
+  .conteudo img {
+    display: none;
+  }
+}
+
 </style>
